@@ -73,13 +73,11 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
          it('Validate click menu states visible or hidden', function () {
-             $('.menu-icon-link').on('click', function () {
-                 expect($('body').hasClass('menu-hidden')).toBe(false);
-             });
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBe(false);
 
-             $('.menu-icon-link').on('click', function () {
-                 expect($('body').hasClass('menu-hidden')).toBe(true);
-             });
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBe(true);
          });
 
 
@@ -111,6 +109,15 @@ $(function() {
             * by the loadFeed function that the content actually changes.
             * Remember, loadFeed() is asynchronous.
             */
+                beforeEach(function (done) {
+                    loadFeed(1, function () {
+                        done();
+                    });
+                })
+
+                it('validates the upload of content', function () {
+                    
+                });
             });
         });
     })
