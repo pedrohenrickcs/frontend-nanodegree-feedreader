@@ -110,13 +110,19 @@ $(function() {
             * Remember, loadFeed() is asynchronous.
             */
                 beforeEach(function (done) {
-                    loadFeed(1, function () {
-                        done();
+                    loadFeed(0, function () {
+                        firstFeed = document.querySelector('.entry').textContent;;
+                        loadFeed(1, function () {
+                            done();
+                        });
                     });
+
                 })
 
-                it('validates the upload of content', function () {
-                    
+                it('validates the upload of content', function (done) {
+                    lastFeed = document.querySelector('.entry').textContent;
+                    expect(firstFeed).not.toEqual(lastFeed);
+                    done();
                 });
             });
         });
